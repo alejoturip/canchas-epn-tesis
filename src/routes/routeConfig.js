@@ -30,7 +30,7 @@ export const CLIENT_ROUTES = activas([
 
 export const ADMIN_ROUTES = activas([
   { path: '/admin',               label: 'Dashboard',    icon: 'dashboard'                          },
-  { path: '/admin/canchas',       label: 'Canchas',      icon: 'calendar'                           },
+  { path: '/admin/canchas',       label: 'Escenarios',   icon: 'calendar'                           },
   { path: '/admin/reservas',      label: 'Reservas',     icon: 'ticket'                             },
   { path: '/admin/pagos',         label: 'Pagos',        icon: 'credit-card', flag: 'PAGOS'         },
   { path: '/admin/validar',       label: 'Validar QR',   icon: 'qr-code'                            },

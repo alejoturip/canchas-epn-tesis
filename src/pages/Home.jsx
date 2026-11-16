@@ -185,7 +185,7 @@ export default function Home() {
           <div>
             <h2 className="display-title text-2xl md:text-3xl text-ink flex items-center gap-2">
               {coords && <MSym name="location_on" className="text-brand-500 text-[26px]" fill />}
-              {coords ? 'Canchas cerca de ti' : 'Nuestras Canchas'}
+              {coords ? 'Escenarios cerca de ti' : 'Escenarios Deportivos'}
             </h2>
             <p className="text-surface-400 text-sm mt-1">
               {coords ? 'Ordenadas por distancia desde tu ubicación' : 'Reserva tu espacio ahora mismo'}
@@ -194,7 +194,7 @@ export default function Home() {
           <div className="flex flex-col items-start sm:items-end gap-1">
             <button onClick={solicitar} disabled={geoLoading} className="btn-secondary btn-sm">
               <MSym name={geoLoading ? 'progress_activity' : 'near_me'} className={`text-[18px] ${geoLoading ? 'animate-spin' : ''}`} />
-              {coords ? 'Actualizar ubicación' : 'Canchas cerca de ti'}
+              {coords ? 'Actualizar ubicación' : 'Escenarios cerca de ti'}
             </button>
             {geoError && <span className="text-xs text-red-700">{geoError}</span>}
           </div>
@@ -208,7 +208,7 @@ export default function Home() {
             animate={{ scale: 1, opacity: 1 }}
             className="card p-12 text-center text-surface-400 border-dashed border-2 border-surface-700"
           >
-            No hay canchas disponibles en este momento.
+            No hay escenarios disponibles en este momento.
           </motion.div>
         ) : (
           <motion.div

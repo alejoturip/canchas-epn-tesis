@@ -127,18 +127,18 @@ export default function CanchasAdmin() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 className="section-title">Gestión de Canchas</h2>
-          <p className="text-surface-400 text-sm">Agrega, edita o elimina las canchas de tu complejo.</p>
+          <h2 className="section-title">Gestión de Escenarios Deportivos</h2>
+          <p className="text-surface-400 text-sm">Agrega, edita o elimina los escenarios deportivos de la institución.</p>
         </div>
         <button onClick={() => abrirModal()} className="btn-primary w-full sm:w-auto">
-          <Plus className="w-5 h-5" /> Nueva Cancha
+          <Plus className="w-5 h-5" /> Nuevo Escenario
         </button>
       </div>
 
-      <AyudaBox id="canchas" titulo="¿Cómo gestionar tus canchas?" icon="stadium">
+      <AyudaBox id="canchas" titulo="¿Cómo gestionar los escenarios?" icon="stadium">
         <ul className="space-y-1.5">
-          <li className="flex gap-2"><MSym name="add_circle" className="text-cat-blue text-[18px] flex-shrink-0 mt-0.5" /><span className="flex-1">Tocá <b className="text-ink">Nueva Cancha</b> y cargá nombre, foto, precio, <b className="text-ink">horario y días de atención</b> y la ubicación.</span></li>
-          <li className="flex gap-2"><MSym name="toggle_on" className="text-pitch text-[18px] flex-shrink-0 mt-0.5" /><span className="flex-1">Solo las canchas <b className="text-ink">activas</b> aparecen para reservar en el inicio del cliente.</span></li>
+          <li className="flex gap-2"><MSym name="add_circle" className="text-cat-blue text-[18px] flex-shrink-0 mt-0.5" /><span className="flex-1">Tocá <b className="text-ink">Nuevo Escenario</b> y cargá nombre, foto, <b className="text-ink">horario y días de atención</b> y la ubicación.</span></li>
+          <li className="flex gap-2"><MSym name="toggle_on" className="text-pitch text-[18px] flex-shrink-0 mt-0.5" /><span className="flex-1">Solo los escenarios <b className="text-ink">activos</b> aparecen para reservar en el inicio del estudiante.</span></li>
           <li className="flex gap-2"><MSym name="edit" className="text-cat-blue text-[18px] flex-shrink-0 mt-0.5" /><span className="flex-1">Editá o eliminá con los botones de cada tarjeta.</span></li>
         </ul>
       </AyudaBox>
@@ -186,7 +186,7 @@ export default function CanchasAdmin() {
           <div className="w-full sm:max-w-md bg-surface-900 border border-line rounded-t-2xl sm:rounded-2xl max-h-[92dvh] flex flex-col">
             {/* Modal header */}
             <div className="flex items-center justify-between p-5 border-b border-line flex-shrink-0">
-              <h3 className="text-lg font-bold text-ink">{formData.id ? 'Editar Cancha' : 'Crear Cancha'}</h3>
+              <h3 className="text-lg font-bold text-ink">{formData.id ? 'Editar Escenario' : 'Crear Escenario'}</h3>
               <button onClick={() => setShowModal(false)} className="p-1.5 rounded-lg hover:bg-surface-700 text-surface-400 hover:text-ink transition-colors">
                 <X className="w-5 h-5" />
               </button>
@@ -246,16 +246,16 @@ export default function CanchasAdmin() {
 
                 <div>
                   <label className="label flex items-center gap-1.5"><MapPin className="w-4 h-4" /> Dirección</label>
-                  <input type="text" className="input" placeholder="Ej: Av. Principal y 2da, Guayaquil" value={formData.direccion} onChange={e => setFormData({...formData, direccion: e.target.value})} />
+                  <input type="text" className="input" placeholder="Ej: Campus Rubén Orellana, Ladrón de Guevara E11-253" value={formData.direccion} onChange={e => setFormData({...formData, direccion: e.target.value})} />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="label">Latitud</label>
-                    <input type="number" step="any" className="input" placeholder="-2.170998" value={formData.latitud} onChange={e => setFormData({...formData, latitud: e.target.value})} />
+                    <input type="number" step="any" className="input" placeholder="-0.210200" value={formData.latitud} onChange={e => setFormData({...formData, latitud: e.target.value})} />
                   </div>
                   <div>
                     <label className="label">Longitud</label>
-                    <input type="number" step="any" className="input" placeholder="-79.922359" value={formData.longitud} onChange={e => setFormData({...formData, longitud: e.target.value})} />
+                    <input type="number" step="any" className="input" placeholder="-78.489000" value={formData.longitud} onChange={e => setFormData({...formData, longitud: e.target.value})} />
                   </div>
                 </div>
                 <button type="button" onClick={usarMiUbicacion} disabled={ubicando} className="btn-secondary btn-sm w-full">

@@ -9,8 +9,8 @@ import { MARCA } from '../config/marca';
 
 // `flag: null` = siempre visible. Con un flag, aparece solo si está prendido.
 const menuItems = [
-  { icon: 'dashboard',        label: 'Dashboard',   path: '/admin',             flag: null           },
-  { icon: 'stadium',          label: 'Canchas',     path: '/admin/canchas',     flag: null           },
+  { icon: 'dashboard',        label: 'Panel',       path: '/admin',             flag: null           },
+  { icon: 'stadium',          label: 'Escenarios',  path: '/admin/canchas',     flag: null           },
   { icon: 'event_available',  label: 'Reservas',    path: '/admin/reservas',    flag: null           },
   { icon: 'payments',         label: 'Pagos',       path: '/admin/pagos',       flag: 'PAGOS'        },
   { icon: 'qr_code_scanner',  label: 'Validar QR',  path: '/admin/validar',     flag: null           },
