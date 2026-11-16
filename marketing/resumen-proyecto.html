@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Fija — Resumen del proyecto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c0f10; --bg2:#070809; --card:#13181a; --line:rgba(255,255,255,.08);
+    --brand:#E5142A; --pitch:#19C37D; --gold:#E9B949; --blue:#4aa3ff; --violet:#a78bfa;
+    --txt:#ffffff; --mut:#9aa3a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;font-family:'Manrope',sans-serif;color:var(--txt);
+    display:flex;flex-direction:column;align-items:center;gap:20px;padding:24px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.95}
+
+  /* Hoja A4 */
+  .page{width:210mm;min-height:297mm;background:
+      radial-gradient(120% 70% at 12% 0%, #24080c 0%, #0b0405 42%, var(--bg2) 100%);
+    position:relative;overflow:hidden;padding:16mm 15mm 14mm;display:flex;flex-direction:column}
+  .lines{position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:repeating-linear-gradient(90deg,transparent 0 64px,#fff 64px 65px)}
+
+  /* Header comun */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;
+    padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#7a0a15);
+    display:flex;align-items:center;justify-content:center;font-family:'Anton';font-size:24px;
+    box-shadow:0 4px 18px rgba(229,20,42,.4)}
+  .brand h1{font-size:22px}
+  .brand .sub{color:var(--pitch);font-weight:800;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+  .tag{color:var(--mut);font-size:11px;text-align:right;line-height:1.5}
+  .tag b{color:#fff}
+
+  h2.sec{font-size:30px;margin-top:22px}
+  h2.sec .g{color:var(--pitch)} h2.sec .r{color:var(--brand)} h2.sec .y{color:var(--gold)} h2.sec .b{color:var(--blue)}
+  .lead{color:#d6dcde;font-size:14px;line-height:1.55;margin-top:10px;max-width:170mm}
+
+  /* Portada */
+  .cover-hero{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .cover-hero .kick{color:var(--pitch);font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase}
+  .cover-hero h1{font-size:74px;margin-top:8px}
+  .cover-hero h1 .g{color:var(--pitch)}
+  .cover-hero p{margin-top:18px;color:#d6dcde;font-size:17px;line-height:1.5;max-width:150mm}
+  .cover-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+  .cstat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px}
+  .cstat .n{font-family:'Anton';font-size:34px;color:#fff;line-height:1}
+  .cstat .n.g{color:var(--pitch)} .cstat .n.y{color:var(--gold)} .cstat .n.b{color:var(--blue)}
+  .cstat .l{color:var(--mut);font-size:11px;margin-top:6px;line-height:1.3}
+
+  /* Grids de features */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px}
+  .card .hd{display:flex;align-items:center;gap:10px}
+  .card .ic{width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;font-size:17px}
+  .ic.r{background:rgba(229,20,42,.15)} .ic.g{background:rgba(25,195,125,.15)}
+  .ic.b{background:rgba(74,163,255,.15)} .ic.y{background:rgba(233,185,73,.15)}
+  .ic.v{background:rgba(167,139,250,.15)}
+  .card h3{font-size:14px;font-weight:800}
+  .card ul{margin-top:9px;padding-left:2px;list-style:none;display:flex;flex-direction:column;gap:5px}
+  .card li{font-size:12px;color:#cfd6d9;line-height:1.4;padding-left:16px;position:relative}
+  .card li::before{content:"›";position:absolute;left:2px;color:var(--pitch);font-weight:800}
+
+  /* Flujo pasos */
+  .flow{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+  .step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:13px;padding:13px 16px}
+  .step .num{width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#7a0a15);
+    font-family:'Anton';font-size:16px;display:flex;align-items:center;justify-content:center}
+  .step h4{font-size:13.5px;font-weight:800}
+  .step p{font-size:12px;color:var(--mut);margin-top:2px;line-height:1.4}
+
+  /* Bloque destacado */
+  .star{margin-top:16px;border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;
+    background:linear-gradient(120deg,rgba(25,195,125,.14),rgba(74,163,255,.08));
+    border:1px solid rgba(25,195,125,.3)}
+  .star h3{font-size:17px}
+  .star p{font-size:13px;color:#d6dcde;margin-top:7px;line-height:1.5}
+  .star .row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;
+    padding:6px 12px;font-size:11.5px;font-weight:700;color:#e6ebed}
+
+  /* Tabla complejidad */
+  .tbl{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .tbl .r0{display:grid;grid-template-columns:1.1fr 1.6fr .8fr;background:rgba(255,255,255,.05);
+    font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+  .tbl .r0 div,.tbl .rr div{padding:11px 14px}
+  .tbl .rr{display:grid;grid-template-columns:1.1fr 1.6fr .8fr;border-top:1px solid var(--line);font-size:12px}
+  .tbl .rr div:first-child{font-weight:800;color:#fff}
+  .tbl .rr div:nth-child(2){color:#cfd6d9;line-height:1.4}
+  .tbl .lvl{color:var(--gold);font-weight:800;font-size:11.5px}
+
+  .note{margin-top:14px;background:rgba(233,185,73,.08);border:1px solid rgba(233,185,73,.28);
+    border-radius:13px;padding:14px 16px;font-size:12.5px;color:#e9dfc6;line-height:1.55}
+  .note b{color:var(--gold)}
+
+  footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:10.5px}
+  footer b{color:var(--pitch)}
+
+  @media print{
+    body{background:#fff;padding:0;gap:0}
+    .page{box-shadow:none;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ PÁGINA 1 — PORTADA ══════════════════ -->
+<section class="page">
+  <div class="lines"></div>
+  <div class="top">
+    <div class="brand">
+      <div class="mark">F</div>
+      <div><h1 class="display">La Fija</h1><div class="sub">Reservas deportivas</div></div>
+    </div>
+    <div class="tag">Resumen del proyecto<br /><b>Alcance y entregables</b></div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="kick">Aplicación web + panel de administración</div>
+    <h1 class="display">La cancha,<br /><span class="g">en el celular.</span></h1>
+    <p>Una plataforma completa para reservar canchas, cobrar en línea, controlar el ingreso
+    con QR, organizar torneos y fidelizar clientes. Todo desde el teléfono, sin instalar nada
+    y con avisos que llegan aunque la app esté cerrada.</p>
+
+    <div class="cover-stats">
+      <div class="cstat"><div class="n g">9</div><div class="l">módulos en el panel de administración</div></div>
+      <div class="cstat"><div class="n">30+</div><div class="l">pantallas entre cliente y admin</div></div>
+      <div class="cstat"><div class="n y">4</div><div class="l">tipos de torneo soportados</div></div>
+      <div class="cstat"><div class="n b">100%</div><div class="l">web e instalable (PWA)</div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>¿Qué es este documento?</b> Un resumen claro de lo que hace la aplicación y del trabajo
+    técnico que hay detrás. No hace falta saber de tecnología para leerlo: cada sección explica
+    primero qué gana el negocio y luego, en simple, por qué tiene mérito.
+  </div>
+
+  <footer><span>La Fija — Resumen del proyecto</span><span><b>Página 1</b> de 4</span></footer>
+</section>
+
+<!-- ══════════════════ PÁGINA 2 — QUÉ HACE ══════════════════ -->
+<section class="page">
+  <div class="lines"></div>
+  <div class="top">
+    <div class="brand">
+      <div class="mark">F</div>
+      <div><h1 class="display">La Fija</h1><div class="sub">Reservas deportivas</div></div>
+    </div>
+    <div class="tag">Qué hace la app<br /><b>Cliente + administrador</b></div>
+  </div>
+
+  <h2 class="sec display">Lo que hace la <span class="g">aplicación</span></h2>
+  <p class="lead">Dos experiencias en un mismo sistema: la del jugador que reserva y paga, y la del
+  dueño que controla todo desde su panel.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="hd"><div class="ic g">⚽</div><h3>Reservas para el cliente</h3></div>
+      <ul>
+        <li>Elige cancha, día y hora en segundos</li>
+        <li>Ve disponibilidad real (no se pisan turnos)</li>
+        <li>Respeta el horario de cada cancha</li>
+        <li>Mapa con la ubicación de cada complejo</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic r">💳</div><h3>Pago y comprobante</h3></div>
+      <ul>
+        <li>QR de pago con los datos bancarios / DeUna</li>
+        <li>Botón para copiar la cuenta al instante</li>
+        <li>Sube la foto del comprobante desde el celular</li>
+        <li>El admin aprueba con un solo clic</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic b">🎟️</div><h3>Ingreso con QR</h3></div>
+      <ul>
+        <li>Al aprobar el pago se genera un QR de acceso</li>
+        <li>En la puerta se escanea y registra el ingreso</li>
+        <li>El QR vence solo al terminar el turno</li>
+        <li>Sin listas en papel ni confusiones</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic y">🏆</div><h3>Torneos</h3></div>
+      <ul>
+        <li>Liga, eliminación, relámpago y grupos</li>
+        <li>Tabla de posiciones y goleadores en vivo</li>
+        <li>Inscripción de equipos con pago</li>
+        <li>Descarga del torneo en PDF</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic v">🎁</div><h3>Fidelización y tienda</h3></div>
+      <ul>
+        <li>Premios automáticos por reservas acumuladas</li>
+        <li>Catálogo de recompensas configurable</li>
+        <li>Tienda con carrito y pedido por WhatsApp</li>
+        <li>Promociones en el carrusel del inicio</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic g">📊</div><h3>Panel del administrador</h3></div>
+      <ul>
+        <li>Dashboard con ingresos y gráficos en vivo</li>
+        <li>Gestión de canchas, precios y horarios</li>
+        <li>Pagos, reservas, sponsors y productos</li>
+        <li>Soporte y notificaciones a clientes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="star">
+    <h3 class="display">Todo conectado y automático 🔄</h3>
+    <p>El dueño no hace trabajo doble. Cuando aprueba un pago, el sistema confirma la reserva,
+    genera el QR, notifica al cliente y suma sus puntos de fidelidad <b>solo</b>. Los números del
+    dashboard se calculan en tiempo real: no hay planillas que actualizar a mano.</p>
+    <div class="row">
+      <span class="chip">Aprobar pago = 1 clic</span>
+      <span class="chip">QR automático</span>
+      <span class="chip">Puntos automáticos</span>
+      <span class="chip">Dashboard en vivo</span>
+    </div>
+  </div>
+
+  <footer><span>La Fija — Resumen del proyecto</span><span><b>Página 2</b> de 4</span></footer>
+</section>
+
+<!-- ══════════════════ PÁGINA 3 — LO COMPLEJO ══════════════════ -->
+<section class="page">
+  <div class="lines"></div>
+  <div class="top">
+    <div class="brand">
+      <div class="mark">F</div>
+      <div><h1 class="display">La Fija</h1><div class="sub">Reservas deportivas</div></div>
+    </div>
+    <div class="tag">El trabajo por dentro<br /><b>Por qué tiene valor</b></div>
+  </div>
+
+  <h2 class="sec display">Lo que <span class="r">no se ve</span> (y es lo que cuesta)</h2>
+  <p class="lead">La app se ve simple a propósito. Detrás de cada pantalla hay lógica, seguridad y
+  automatizaciones que toman semanas de desarrollo. Esto es lo que sostiene todo.</p>
+
+  <div class="tbl">
+    <div class="r0"><div>Pieza</div><div>Qué resuelve</div><div>Complejidad</div></div>
+    <div class="rr"><div>Motor de reservas</div><div>Evita que dos personas reserven el mismo turno y libera el horario si se rechaza el pago.</div><div class="lvl">Alta</div></div>
+    <div class="rr"><div>Flujo de pagos</div><div>Automatiza confirmar reserva, generar QR y avisar al cliente con un solo clic del admin.</div><div class="lvl">Alta</div></div>
+    <div class="rr"><div>Control de ingreso QR</div><div>Genera un pase único por reserva, con vencimiento, y registra la entrada al escanear.</div><div class="lvl">Media-alta</div></div>
+    <div class="rr"><div>Motor de torneos</div><div>Arma calendarios, llaves y tablas de posiciones para 4 formatos distintos de torneo.</div><div class="lvl">Muy alta</div></div>
+    <div class="rr"><div>Seguridad de datos</div><div>Cada usuario ve solo lo suyo; nadie puede tocar datos de otro ni escalar permisos.</div><div class="lvl">Alta</div></div>
+    <div class="rr"><div>Notificaciones push</div><div>Avisos reales al celular, con la app cerrada, coordinando servidor, base y navegador.</div><div class="lvl">Muy alta</div></div>
+    <div class="rr"><div>App instalable (PWA)</div><div>Funciona como una app nativa, se instala desde el navegador y carga rápido.</div><div class="lvl">Media</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="hd"><div class="ic r">🔒</div><h3>Seguridad de verdad</h3></div>
+      <ul>
+        <li>Reglas a nivel de base de datos, no solo en pantalla</li>
+        <li>Un cliente jamás ve datos de otro</li>
+        <li>Solo el admin edita precios, canchas y pagos</li>
+        <li>Contraseñas y sesiones gestionadas por Supabase</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic b">⚙️</div><h3>Automatización</h3></div>
+      <ul>
+        <li>Disparadores en la base hacen el trabajo solos</li>
+        <li>Menos errores humanos, menos tiempo perdido</li>
+        <li>Los premios y puntos se otorgan automáticamente</li>
+        <li>El dashboard no se actualiza a mano nunca</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>En criollo:</b> no es una página con un formulario. Es un sistema con un servidor, una base
+    de datos, reglas de seguridad y automatizaciones que trabajan aunque nadie esté mirando. Ese es
+    el tipo de desarrollo que usan las apps profesionales.
+  </div>
+
+  <footer><span>La Fija — Resumen del proyecto</span><span><b>Página 3</b> de 4</span></footer>
+</section>
+
+<!-- ══════════════════ PÁGINA 4 — PUSH + ENTREGABLES ══════════════════ -->
+<section class="page">
+  <div class="lines"></div>
+  <div class="top">
+    <div class="brand">
+      <div class="mark">F</div>
+      <div><h1 class="display">La Fija</h1><div class="sub">Reservas deportivas</div></div>
+    </div>
+    <div class="tag">Lo más reciente<br /><b>Avisos al celular</b></div>
+  </div>
+
+  <h2 class="sec display">Avisos que <span class="g">llegan al celular</span></h2>
+  <p class="lead">La última incorporación: notificaciones push reales. Le llegan al dueño y al
+  cliente en el teléfono, incluso con la aplicación cerrada. Es de lo más complejo de construir
+  en una app web.</p>
+
+  <div class="flow">
+    <div class="step"><div class="num">1</div><div><h4>Un cliente reserva una cancha</h4><p>Al dueño le suena el aviso "Nueva reserva" al instante, esté donde esté.</p></div></div>
+    <div class="step"><div class="num">2</div><div><h4>El cliente sube el comprobante</h4><p>El dueño recibe "Comprobante por aprobar" y entra a validarlo con un clic.</p></div></div>
+    <div class="step"><div class="num">3</div><div><h4>El dueño aprueba el pago</h4><p>El cliente recibe "Pago aprobado" y ya puede ver su QR de acceso.</p></div></div>
+  </div>
+
+  <div class="star">
+    <h3 class="display">Por qué esto es difícil 🧩</h3>
+    <p>Un aviso que llega con la app cerrada necesita coordinar cuatro piezas al mismo tiempo:
+    la base de datos que detecta el evento, un servidor propio que arma el mensaje, las llaves de
+    seguridad que exigen Google y Apple, y un programa que corre en el celular para mostrarlo.
+    Todo cifrado y por aparato.</p>
+    <div class="row">
+      <span class="chip">Base de datos</span>
+      <span class="chip">Servidor propio</span>
+      <span class="chip">Llaves de seguridad</span>
+      <span class="chip">App en el celular</span>
+    </div>
+  </div>
+
+  <h2 class="sec display" style="font-size:24px;margin-top:22px">Lo que se <span class="y">entrega</span></h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="hd"><div class="ic g">✅</div><h3>Aplicación funcionando</h3></div>
+      <ul>
+        <li>App web publicada y lista para usar</li>
+        <li>Panel de administración completo</li>
+        <li>Instalable en el celular del dueño y clientes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><div class="ic b">📄</div><h3>Puesta a punto</h3></div>
+      <ul>
+        <li>Datos del negocio cargados (canchas, precios)</li>
+        <li>Datos de cobro configurados</li>
+        <li>Guías para operar el sistema día a día</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>En resumen:</b> no se contrató una página web, se contrató un sistema de reservas, cobros,
+    control de acceso, torneos, fidelización y notificaciones — todo integrado, seguro y automático.
+    El equivalente a varias herramientas juntas, hechas a la medida del negocio.
+  </div>
+
+  <footer><span>La Fija — Reservas deportivas</span><span><b>Página 4</b> de 4</span></footer>
+</section>
+
+</body>
+</html>

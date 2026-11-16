@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Fija — Flyer para canchas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c0f10; --bg2:#070809; --card:#13181a; --line:rgba(255,255,255,.08);
+    --brand:#E5142A; --pitch:#19C37D; --gold:#E9B949; --blue:#4aa3ff;
+    --txt:#ffffff; --mut:#9aa3a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;font-family:'Manrope',sans-serif;color:var(--txt);
+    display:flex;justify-content:center;padding:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.95}
+
+  /* Hoja A4 */
+  .page{width:210mm;min-height:297mm;background:
+      radial-gradient(120% 80% at 15% 0%, #2a0a0e 0%, #0c0506 45%, var(--bg2) 100%);
+    position:relative;overflow:hidden;padding:18mm 16mm 14mm}
+  .pitch-lines{position:absolute;inset:0;opacity:.06;pointer-events:none;
+    background-image:repeating-linear-gradient(90deg,transparent 0 64px,#fff 64px 65px)}
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{height:64px;width:auto;filter:drop-shadow(0 4px 20px rgba(229,20,42,.4))}
+  .brand h1{font-size:34px}
+  .brand .sub{color:var(--pitch);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .pill{background:rgba(25,195,125,.12);border:1px solid rgba(25,195,125,.4);color:var(--pitch);
+    padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px;white-space:nowrap}
+
+  /* Hero */
+  .hero{margin-top:30px;position:relative}
+  .hero h2{font-size:52px;line-height:.92}
+  .hero h2 .g{color:var(--pitch)}
+  .hero h2 .r{color:var(--brand)}
+  .hero p{margin-top:14px;color:#d6dcde;font-size:16px;max-width:150mm;line-height:1.5}
+
+  /* Beneficios */
+  .grid{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 16px 18px;
+    display:flex;gap:13px;align-items:flex-start}
+  .feat .ic{width:40px;height:40px;flex:0 0 40px;border-radius:11px;display:flex;align-items:center;
+    justify-content:center;font-size:20px;font-weight:800}
+  .ic.r{background:rgba(229,20,42,.15);color:#ff6b78}
+  .ic.g{background:rgba(25,195,125,.15);color:var(--pitch)}
+  .ic.b{background:rgba(74,163,255,.15);color:var(--blue)}
+  .ic.y{background:rgba(233,185,73,.15);color:var(--gold)}
+  .feat h3{font-size:15px;font-weight:800}
+  .feat p{font-size:12.5px;color:var(--mut);margin-top:3px;line-height:1.4}
+
+  /* Destacado torneos */
+  .star{margin-top:14px;border-radius:18px;padding:18px 20px;position:relative;overflow:hidden;
+    background:linear-gradient(120deg,rgba(233,185,73,.16),rgba(229,20,42,.10));
+    border:1px solid rgba(233,185,73,.3)}
+  .star .tag{color:var(--gold);font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+  .star h3{font-size:24px;margin-top:4px}
+  .star p{color:#e7ebec;font-size:13.5px;margin-top:6px;max-width:150mm;line-height:1.45}
+
+  /* Cómo funciona */
+  .how{margin-top:22px}
+  .how .t{font-size:13px;color:var(--mut);font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .step .n{font-family:'Anton';font-size:26px;color:var(--brand)}
+  .step b{display:block;font-size:13px;margin-top:2px}
+  .step span{font-size:11.5px;color:var(--mut);line-height:1.4;display:block;margin-top:3px}
+
+  /* CTA / footer */
+  .cta{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    background:var(--brand);border-radius:18px;padding:18px 22px}
+  .cta .l h3{font-size:22px}
+  .cta .l p{font-size:13px;opacity:.92;margin-top:2px}
+  .cta .r{text-align:right}
+  .cta .r .ph{font-family:'Anton';font-size:26px;letter-spacing:1px}
+  .cta .r .web{font-size:13px;font-weight:700;opacity:.95}
+  .legal{margin-top:12px;text-align:center;color:#6b7378;font-size:10.5px}
+
+  @media print{
+    body{background:#fff;padding:0}
+    .page{box-shadow:none;width:210mm;height:297mm}
+    @page{size:A4;margin:0}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="pitch-lines"></div>
+
+    <header>
+      <div class="brand">
+        <!-- Si abrís este archivo dentro del proyecto, el logo carga solo -->
+        <img class="logo" src="../public/logo.png" alt="La Fija"
+             onerror="this.style.display='none'" />
+        <div>
+          <h1 class="display">La Fija</h1>
+          <div class="sub">Reservas + Torneos</div>
+        </div>
+      </div>
+      <div class="pill">Para dueños de canchas</div>
+    </header>
+
+    <section class="hero">
+      <h2 class="display">Tu cancha, <span class="g">llena</span>.<br/>Sin tanto <span class="r">lío</span> en WhatsApp.</h2>
+      <p>La Fija es la app que ordena tus reservas, cobra en línea y organiza tus torneos con tabla de
+         posiciones automática. Tus clientes reservan desde el celular; tú manejas todo desde un panel.</p>
+    </section>
+
+    <div class="grid">
+      <div class="feat"><div class="ic g">📅</div><div><h3>Reservas 24/7</h3><p>El cliente ve los horarios libres y reserva solo. Se acabó el "¿está libre a las 8?".</p></div></div>
+      <div class="feat"><div class="ic r">🏆</div><div><h3>Torneos completos</h3><p>Ligas, eliminación y relámpago con tabla de posiciones, llaves y PDF automático.</p></div></div>
+      <div class="feat"><div class="ic b">💳</div><div><h3>Cobro ordenado</h3><p>QR de pago, comprobante y validación con QR en la puerta. Sin plata perdida.</p></div></div>
+      <div class="feat"><div class="ic y">🎁</div><div><h3>Fidelización</h3><p>Premios automáticos por reservas. El cliente vuelve para ganarlos.</p></div></div>
+    </div>
+
+    <div class="star">
+      <div class="tag">⚡ Lo que nadie más te da</div>
+      <h3 class="display">Organiza torneos en 1 clic</h3>
+      <p>Creas el torneo, los equipos se inscriben, generas el fixture automático y cargas resultados.
+         La tabla de posiciones y las llaves se actualizan solas. Hasta un PDF del torneo para imprimir.</p>
+    </div>
+
+    <div class="how">
+      <div class="t">Así de fácil</div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><b>El cliente reserva</b><span>Elige cancha, día y hora desde su celular.</span></div>
+        <div class="step"><div class="n">2</div><b>Paga y sube el comprobante</b><span>Tú apruebas con 1 toque. Se genera su QR de ingreso.</span></div>
+        <div class="step"><div class="n">3</div><b>Entra escaneando</b><span>En la puerta escaneas el QR y queda registrado.</span></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="l">
+        <h3 class="display">¿Quieres una demo gratis?</h3>
+        <p>Te la muestro funcionando con tu cancha, sin compromiso.</p>
+      </div>
+      <div class="r">
+        <div class="ph">098 768 4148</div>
+        <div class="web">lafija.netlify.app</div>
+      </div>
+    </div>
+
+    <div class="legal">La Fija — App de reservas y torneos deportivos · Hecha en Ecuador 🇪🇨</div>
+  </div>
+
+<script>
+  // Atajo: Ctrl/Cmd + P para guardar como PDF
+  document.title = 'La Fija — Flyer (Ctrl+P para guardar PDF)';
+</script>
+</body>
+</html>

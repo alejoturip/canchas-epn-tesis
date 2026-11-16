@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Fija para tu cancha — Reservas y torneos sin complicarte</title>
+<meta name="description" content="La app que ordena tus reservas, cobra online y organiza torneos con tabla de posiciones automática. Pedí una demo gratis." />
+<meta property="og:title" content="La Fija para tu cancha" />
+<meta property="og:description" content="Reservas 24/7, cobro ordenado y torneos en 1 click. Demo gratis." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c0f10; --bg2:#070809; --card:#13181a; --line:rgba(255,255,255,.08);
+    --brand:#E5142A; --pitch:#19C37D; --gold:#E9B949; --blue:#4aa3ff;
+    --txt:#fff; --mut:#9aa3a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:'Manrope',sans-serif;line-height:1.5;overflow-x:hidden}
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.95}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  a{color:inherit;text-decoration:none}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--pitch);color:#06231a;
+    font-weight:800;padding:15px 26px;border-radius:14px;font-size:16px;border:none;cursor:pointer;
+    transition:transform .15s, box-shadow .15s;box-shadow:0 10px 30px rgba(25,195,125,.3)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(25,195,125,.42)}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid var(--line);box-shadow:none}
+  .btn.brand{background:var(--brand);color:#fff;box-shadow:0 10px 30px rgba(229,20,42,.3)}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(12,15,16,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav .brand{display:flex;align-items:center;gap:10px}
+  nav img{height:34px}
+  nav .brand b{font-family:'Anton';font-size:22px;letter-spacing:.5px}
+  nav .cta-sm{font-weight:800;font-size:14px;color:var(--pitch)}
+
+  /* Hero */
+  .hero{position:relative;padding:70px 0 60px;
+    background:radial-gradient(120% 80% at 18% -10%, #2a0a0e 0%, #0c0506 45%, var(--bg2) 100%)}
+  .hero .pitch-lines{position:absolute;inset:0;opacity:.05;
+    background-image:repeating-linear-gradient(90deg,transparent 0 70px,#fff 70px 71px)}
+  .hero .wrap{position:relative}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(25,195,125,.12);
+    border:1px solid rgba(25,195,125,.35);color:var(--pitch);padding:7px 14px;border-radius:999px;
+    font-weight:700;font-size:13px}
+  .hero h1{font-size:clamp(40px,7vw,72px);margin-top:20px;max-width:14ch}
+  .hero h1 .g{color:var(--pitch)} .hero h1 .r{color:var(--brand)}
+  .hero p.sub{margin-top:18px;font-size:clamp(16px,2.4vw,20px);color:#d6dcde;max-width:60ch}
+  .hero .actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .trust{margin-top:24px;color:var(--mut);font-size:14px;display:flex;gap:18px;flex-wrap:wrap}
+  .trust span{display:flex;align-items:center;gap:7px}
+
+  /* Secciones */
+  section.block{padding:64px 0}
+  .eyebrow{color:var(--gold);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}
+  h2.sec{font-size:clamp(30px,5vw,46px);margin-top:10px}
+  .lead{color:var(--mut);font-size:17px;margin-top:12px;max-width:65ch}
+
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+  .feat .ic{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;margin-bottom:14px}
+  .ic.r{background:rgba(229,20,42,.15)} .ic.g{background:rgba(25,195,125,.15)}
+  .ic.b{background:rgba(74,163,255,.15)} .ic.y{background:rgba(233,185,73,.15)}
+  .feat h3{font-size:19px} .feat p{color:var(--mut);margin-top:8px;font-size:15px}
+
+  /* Destacado torneos */
+  .star{background:linear-gradient(120deg,rgba(233,185,73,.14),rgba(229,20,42,.10));
+    border:1px solid rgba(233,185,73,.28);border-radius:24px;padding:42px;margin-top:8px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+  .star .tag{color:var(--gold);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:12px}
+  .star h3{font-size:clamp(26px,4vw,38px);margin-top:6px}
+  .star p{color:#e7ebec;margin-top:14px;font-size:16px}
+  .star ul{margin-top:18px;list-style:none;display:grid;gap:10px}
+  .star li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+  .star li b{color:var(--pitch)}
+  .mock{background:#0a0d0e;border:1px solid var(--line);border-radius:18px;padding:18px;font-size:13px}
+  .mock .row{display:flex;justify-content:space-between;padding:9px 4px;border-bottom:1px solid var(--line)}
+  .mock .row:last-child{border:0}
+  .mock .pos{color:var(--gold);font-family:'Anton';width:24px}
+  .mock .pts{color:var(--pitch);font-weight:800}
+  .mock .head{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+
+  /* Pasos */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:36px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;position:relative}
+  .step .n{font-family:'Anton';font-size:42px;color:var(--brand);line-height:1}
+  .step h4{font-size:18px;margin-top:8px} .step p{color:var(--mut);margin-top:6px;font-size:14px}
+
+  /* Precio / oferta */
+  .offer{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:42px;text-align:center}
+  .offer h3{font-size:clamp(26px,4vw,38px)} .offer p{color:var(--mut);margin-top:12px;font-size:17px}
+  .offer .actions{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* FAQ */
+  .faq{display:grid;gap:12px;margin-top:32px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  details summary{font-weight:700;cursor:pointer;font-size:16px;list-style:none;display:flex;justify-content:space-between}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:'+';color:var(--pitch);font-weight:800}
+  details[open] summary::after{content:'–'}
+  details p{color:var(--mut);margin-top:12px;font-size:15px}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
+  footer b{color:#fff;font-family:'Anton';letter-spacing:.5px}
+
+  /* WhatsApp flotante */
+  .wa{position:fixed;right:18px;bottom:18px;z-index:60;background:#25D366;color:#06231a;
+    width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:30px;box-shadow:0 10px 30px rgba(37,211,102,.45);transition:transform .15s}
+  .wa:hover{transform:scale(1.08)}
+
+  @media(max-width:760px){
+    .star{grid-template-columns:1fr;padding:28px}
+    section.block{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ⚙️ CONFIG: cambiá el número y el mensaje acá (una sola vez).
+     Formato del número: 593 + tu celular SIN el 0 inicial.
+     Ej: 0987684148 → 593987684148
+     ============================================================ -->
+<script>
+  window.LAFIJA = {
+    whatsapp: '593987684148',
+    msg: 'Hola! Tengo una cancha y vi La Fija. Me interesa una demo gratis 👋',
+    demoUrl: 'https://lafija.netlify.app'
+  }; // 👆 cambia el número (593 + tu celular sin el 0) y el mensaje si quieres
+</script>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <img src="../../public/logo.png" alt="La Fija" onerror="this.style.display='none'" />
+      <b class="display">La Fija</b>
+    </div>
+    <a class="cta-sm" href="#demo">Pedir demo →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="pitch-lines"></div>
+  <div class="wrap">
+    <span class="badge">⚽ Para dueños de canchas</span>
+    <h1 class="display">Tu cancha <span class="g">llena</span>. Sin tanto <span class="r">lío</span> en WhatsApp.</h1>
+    <p class="sub">La Fija ordena tus reservas, cobra en línea y organiza tus torneos con tabla de
+       posiciones automática. Tus clientes reservan desde el celular; tú manejas todo desde un panel.</p>
+    <div class="actions">
+      <a class="btn" id="cta-hero" href="#demo">💬 Quiero una demo gratis</a>
+      <a class="btn ghost" href="#torneos">Ver qué incluye</a>
+    </div>
+    <div class="trust">
+      <span>✅ Sin instalar nada (es una app web)</span>
+      <span>✅ Lista para usar hoy</span>
+      <span>✅ Hecha en Ecuador 🇪🇨</span>
+    </div>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow">Todo en un solo lugar</div>
+    <h2 class="sec display">Lo que tu cancha necesita</h2>
+    <div class="feats">
+      <div class="feat"><div class="ic g">📅</div><h3>Reservas 24/7</h3><p>El cliente ve los horarios libres y reserva solo, a cualquier hora. Se acabó el "¿está libre a las 8?".</p></div>
+      <div class="feat"><div class="ic r">🏆</div><h3>Torneos completos</h3><p>Ligas, eliminación y relámpago con tabla de posiciones, llaves y PDF automático del campeonato.</p></div>
+      <div class="feat"><div class="ic b">💳</div><h3>Cobro ordenado</h3><p>QR de pago, comprobante y validación con QR en la puerta. Sabes quién pagó y quién entra.</p></div>
+      <div class="feat"><div class="ic y">🎁</div><h3>Fidelización</h3><p>Premios automáticos por cantidad de reservas. El cliente vuelve para ganarlos.</p></div>
+      <div class="feat"><div class="ic g">🛒</div><h3>Tienda integrada</h3><p>Vende bebidas, ropa o lo que sea con carrito y pedido directo por WhatsApp.</p></div>
+      <div class="feat"><div class="ic b">📊</div><h3>Panel con números</h3><p>Reservas, pagos pendientes y gráficos. Sabes cómo va tu negocio de un vistazo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="torneos">
+  <div class="wrap">
+    <div class="star">
+      <div>
+        <div class="tag">⚡ Lo que nadie más te da</div>
+        <h3 class="display">Organiza torneos en 1 clic</h3>
+        <p>El mayor diferenciador. Creas el torneo, los equipos se inscriben, generas el fixture
+           automático y solo cargas resultados. Lo demás se calcula solo.</p>
+        <ul>
+          <li>✅ <span><b>Tabla de posiciones</b> automática (PJ, PG, DG, Pts).</span></li>
+          <li>✅ <span><b>Llaves / brackets</b> que avanzan al cargar el ganador.</span></li>
+          <li>✅ <span><b>Goleadores</b> y <b>campeón</b> destacados.</span></li>
+          <li>✅ <span><b>PDF del torneo</b> listo para imprimir o compartir.</span></li>
+        </ul>
+      </div>
+      <div class="mock">
+        <div class="head">Tabla de posiciones · Liga La Fija</div>
+        <div class="row"><span><span class="pos">1</span> Los Cracks</span><span class="pts">18 pts</span></div>
+        <div class="row"><span><span class="pos">2</span> Real Barrio</span><span class="pts">15 pts</span></div>
+        <div class="row"><span><span class="pos">3</span> FC Esquina</span><span class="pts">13 pts</span></div>
+        <div class="row"><span><span class="pos">4</span> Los Panas</span><span class="pts">11 pts</span></div>
+        <div class="row"><span><span class="pos">5</span> Atlético Sur</span><span class="pts">9 pts</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow">Así de fácil</div>
+    <h2 class="sec display">De la reserva a la cancha</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>El cliente reserva</h4><p>Elige cancha, día y hora desde su celular. Ve solo los horarios libres.</p></div>
+      <div class="step"><div class="n">2</div><h4>Paga y sube el comprobante</h4><p>Tú apruebas con un toque. Se genera su QR de ingreso automáticamente.</p></div>
+      <div class="step"><div class="n">3</div><h4>Entra escaneando</h4><p>En la puerta escaneas su QR y el ingreso queda registrado. Sin papeles.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="demo">
+  <div class="wrap">
+    <div class="offer">
+      <div class="eyebrow">Sin compromiso</div>
+      <h3 class="display">Te muestro la app funcionando con tu cancha</h3>
+      <p>Agenda una demo gratis de 15 minutos. Si te gusta, la dejamos lista para que empieces a usarla.</p>
+      <div class="actions">
+        <a class="btn" id="cta-demo" href="#">💬 Pedir mi demo por WhatsApp</a>
+        <a class="btn ghost" id="cta-probar" href="#" target="_blank" rel="noopener">Probar la app ahora →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="eyebrow">Dudas frecuentes</div>
+    <h2 class="sec display">Lo que todos preguntan</h2>
+    <div class="faq">
+      <details><summary>¿Mis clientes tienen que descargar algo?</summary><p>No. La Fija es una app web: entran desde un link y la pueden "instalar" en su pantalla de inicio si quieren, pero funciona directo en el navegador del celular.</p></details>
+      <details><summary>¿Cómo se cobran las reservas?</summary><p>Hoy el cliente paga por transferencia o DeUna, sube el comprobante y tú lo apruebas con un toque. Estamos sumando pago automático con tarjeta para quien lo necesite.</p></details>
+      <details><summary>¿Sirve para canchas de pádel o tenis?</summary><p>Sí. Funciona para cualquier cancha que se alquile por horario: fútbol, indoor, pádel, tenis, vóley, etc.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Depende del tamaño de tu cancha. Pide la demo y armamos un plan que te convenga. La idea es que te haga ganar más de lo que cuesta.</p></details>
+      <details><summary>¿Qué tan rápido lo puedo tener funcionando?</summary><p>La app ya está lista. En la demo cargamos tus canchas y horarios, y puedes empezar el mismo día.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b class="display">La Fija</b>
+    <p style="margin-top:10px">App de reservas y torneos deportivos · Hecha en Ecuador 🇪🇨</p>
+    <p style="margin-top:6px"><a id="cta-foot" href="#" style="color:var(--pitch);font-weight:700">Escríbeme por WhatsApp →</a></p>
+  </div>
+</footer>
+
+<a class="wa" id="wa-float" href="#" aria-label="WhatsApp">💬</a>
+
+<script>
+  (function(){
+    var c = window.LAFIJA;
+    var waLink = 'https://wa.me/' + c.whatsapp + '?text=' + encodeURIComponent(c.msg);
+    ['cta-hero','cta-demo','cta-foot','wa-float'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.href = waLink;
+    });
+    // los que llevan a #demo se quedan como anclas; el de "probar la app":
+    var probar = document.getElementById('cta-probar');
+    if(probar) probar.href = c.demoUrl;
+    // hero "quiero demo" → mejor que abra WhatsApp directo:
+    var hero = document.getElementById('cta-hero');
+    if(hero){ hero.href = '#demo'; } // mantiene scroll a la sección de demo
+  })();
+</script>
+</body>
+</html>

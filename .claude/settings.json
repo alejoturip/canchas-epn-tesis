@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Alejo/AppData/Local/Temp/cap2/**)",
+      "Read(//c/Users/Alejo/AppData/Local/Temp/tesis/**)"
+    ]
+  }
+}
